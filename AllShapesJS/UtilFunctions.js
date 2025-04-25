@@ -5,9 +5,8 @@ function CenterCanvas() {
 }
 
 function WindowResized() {
-    centerCanvas();
+    CenterCanvas();
 }
-
 
 function RoundToHalfOrWhole(value, negativeRotation) {
     const decimalNums = Math.abs(Math.floor((value % 1) * 100));
@@ -20,9 +19,12 @@ function RoundToHalfOrWhole(value, negativeRotation) {
         }
     } else {
         value = Math.round(value);
-
     }
 
     return value;
 }
+
+// Expose the function to the global scope
+window.RoundToHalfOrWhole = RoundToHalfOrWhole;
+
 

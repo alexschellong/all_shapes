@@ -63,6 +63,8 @@ function GetRandomSizeGivenMaxScale(sizePercentage, negativeRotationBool) {
             } else {
                 sizePercentage = int(sizePercentage);
             }
+        } else {
+            sizePercentage = RoundToHalfOrWhole(sizePercentage, negativeRotationBool);
         }
     }
 
@@ -116,8 +118,6 @@ function GetWidestAspectRatio(areaSize, rotation, negativeRotationBool) {
             x = z * cos(radians(rotation) - alpha);
             y = z * sin(radians(rotation) - alpha);
         }
-        console.log("x:", x);
-        console.log("y:", y);
 
         if (abs(x) > 512) {
             const proportionsSides = GetProportionSides(areaSize, rotation, negativeRotationBool);
@@ -129,13 +129,9 @@ function GetWidestAspectRatio(areaSize, rotation, negativeRotationBool) {
             z = z / 2.0;
             x = z * cos(radians(rotation) - alpha);
             y = z * sin(radians(rotation) - alpha);
-            console.log("x:", x);
-            console.log("y:", y);
         }
     }
 
-    console.log("rect_width:", rectWidth);
-    console.log("rect_height:", rectHeight);
     return { rectWidth, rectHeight };
 }
 
@@ -207,3 +203,12 @@ function GetRandomAspectRatio(startWidth, maxWidth, areaSize, negativeRotationBo
 
     return { newWidth, newHeight, aspectRatio };;
 };
+
+
+// Expose the function to the global scope
+window.GetMaxScaleGivenRotation = GetMaxScaleGivenRotation;
+window.GetRandomSizeGivenMaxScale = GetRandomSizeGivenMaxScale;
+window.GetWidestAspectRatio = GetWidestAspectRatio;
+window.GetProportionTopBottom = GetProportionTopBottom;
+window.GetProportionSides = GetProportionSides;
+window.GetRandomAspectRatio = GetRandomAspectRatio;
