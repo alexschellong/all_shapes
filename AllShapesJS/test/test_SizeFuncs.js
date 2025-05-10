@@ -52,7 +52,6 @@ suite('Size Functions', function () {
 
             testCases.forEach(maxScale => {
                 const output = GetRandomSizeGivenMaxScale(maxScale, true);
-                console.log("output:", output);
                 assert.isAtLeast(output, maxScale);
                 assert.isAtMost(output, -1);
                 assert.equal(output % 0.5, 0);

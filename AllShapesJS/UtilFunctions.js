@@ -24,7 +24,33 @@ function RoundToHalfOrWhole(value, negativeRotation) {
     return value;
 }
 
+
+function RoundToHalfOrWholeDownwards(value) {
+    if (value % 1 < 0.5) {
+        value = int(value);
+    } else {
+        value = int(value) + 0.5;
+    }
+
+    return value;
+}
+
+
+function RoundToOneDecimalPlaceButNotOverValue(value) {
+    const originalValue = value;
+
+    if (value == originalValue) {
+        value = Math.floor(value * 10) / 10;
+    } else {
+        value = Math.round(value * 10) / 10;
+    }
+
+    return value;
+}
+
 // Expose the function to the global scope
 window.RoundToHalfOrWhole = RoundToHalfOrWhole;
+window.RoundToHalfOrWholeDownwards = RoundToHalfOrWholeDownwards;
+window.RoundToOneDecimalPlaceButNotOverValue = RoundToOneDecimalPlaceButNotOverValue;
 
 

@@ -132,6 +132,7 @@ function GetWidestAspectRatio(areaSize, rotation, negativeRotationBool) {
         }
     }
 
+
     return { rectWidth, rectHeight };
 }
 
@@ -188,20 +189,36 @@ function GetProportionSides(areaSize, rotation, negativeRotation) {
     return { newBoxHeight, newBoxWidth };
 };
 
-function GetRandomAspectRatio(startWidth, maxWidth, areaSize, negativeRotationBool) {
-    let newWidth;
+function GetRandomAspectRatio(startWidth, maxWidth, areaSize, negativeRotationBool, rotation) {
+
+    const maxHeight = areaSize / maxWidth;
+    let maxAspectRatio = maxWidth / maxHeight;
+
+    maxAspectRatio = Math.floor(maxAspectRatio * 10) / 10;
+
+    let minAspectRatio;
+    let minHeight;
 
     if (negativeRotationBool) {
-        newWidth = random(-startWidth, maxWidth);
+
+        minHeight = areaSize / (-startWidth);
+        minAspectRatio = (-startWidth) / minHeight;
     } else {
 
-        newWidth = random(startWidth, maxWidth);
+        minHeight = areaSize / startWidth;
+        minAspectRatio = startWidth / minHeight;
     }
 
-    const newHeight = areaSize / newWidth;
-    const aspectRatio = newHeight / newWidth;
+    minAspectRatio = Math.floor(minAspectRatio * 10) / 10;
 
-    return { newWidth, newHeight, aspectRatio };;
+    let selectedAspectRatio = random(minAspectRatio, maxAspectRatio);
+    selectedAspectRatio = Math.floor(selectedAspectRatio * 10) / 10;
+
+    const newWidth = sqrt(areaSize * selectedAspectRatio);
+    const newHeight = areaSize / newWidth;
+
+
+    return { newWidth, newHeight, selectedAspectRatio };
 };
 
 

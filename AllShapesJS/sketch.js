@@ -23,7 +23,7 @@ function setup() {
     const areaSize = rect_width * rect_height;
 
     const widestAspectRatio = GetWidestAspectRatio(areaSize, rotation, negativeRotationBool);
-    const randomAspectRatio = GetRandomAspectRatio(rect_width, widestAspectRatio.rectWidth, areaSize, negativeRotationBool);
+    const randomAspectRatio = GetRandomAspectRatio(rect_width, widestAspectRatio.rectWidth, areaSize, negativeRotationBool, rotation);
 
     rect_width = randomAspectRatio.newWidth;
     rect_height = randomAspectRatio.newHeight;
@@ -33,10 +33,11 @@ function setup() {
     rotate(radians(rotation));
 
     rectMode(CENTER);
-    fill(255, 0, 0);
     noStroke();
+    fill(255, 0, 0);
     rect(0, 0, rect_width, rect_height);
     pop();
+
 
 }
 
