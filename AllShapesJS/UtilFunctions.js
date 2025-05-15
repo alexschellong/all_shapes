@@ -48,6 +48,7 @@ function RoundToOneDecimalPlaceButNotOverValue(value) {
     return value;
 }
 
+
 // Expose the function to the global scope
 window.RoundToHalfOrWhole = RoundToHalfOrWhole;
 window.RoundToHalfOrWholeDownwards = RoundToHalfOrWholeDownwards;
